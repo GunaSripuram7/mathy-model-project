@@ -1,0 +1,56 @@
+# Architecture Diagram Placeholder
+
+This file serves as a placeholder for the actual architecture diagram PNG file.
+
+## Instructions to Replace This File
+
+To complete the documentation, replace this text file with an actual PNG image showing the mathematical art generation model architecture.
+
+### Recommended Tools for Creating the Diagram:
+1. **Online Tools:**
+   - Draw.io (diagrams.net) - Free and powerful
+   - Lucidchart - Professional diagramming
+   - Canva - User-friendly design tool
+
+2. **Desktop Software:**
+   - Microsoft Visio
+   - Adobe Illustrator
+   - Inkscape (free alternative)
+
+3. **Programmatic Generation:**
+   - Python with matplotlib/plotly
+   - D3.js for web-based diagrams
+   - Graphviz for automatic layouts
+
+### Diagram Requirements:
+- **File name:** `architecture_diagram.png`
+- **Dimensions:** 1920x1080 pixels
+- **Resolution:** 300 DPI minimum
+- **Format:** PNG with transparency support
+- **Content:** Follow the detailed description in `architecture_diagram_description.md`
+
+### Key Components to Include:
+1. Formula input and parsing pipeline
+2. Transformer-based formula encoder
+3. U-Net architecture with cross-attention
+4. Loss function breakdown
+5. Training infrastructure overview
+6. Data flow arrows and tensor dimensions
+
+### Visual Guidelines:
+- Use the suggested color coding scheme
+- Include tensor dimensions at each stage
+- Show clear data flow with arrows
+- Add component labels and annotations
+- Maintain professional appearance
+
+### File Location:
+This placeholder should be replaced with the actual diagram at:
+`docs/architecture_diagram.png`
+
+---
+
+**Status:** PLACEHOLDER - NEEDS ACTUAL DIAGRAM
+**Priority:** Medium
+**Assigned to:** Documentation Team
+**Due date:** Next documentation update cycle

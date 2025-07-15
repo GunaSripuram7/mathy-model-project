@@ -1,0 +1,173 @@
+# Training Configuration for Mathematical Art Model
+
+# Model Architecture
+model:
+  vocab_size: 10000
+  formula_dim: 512
+  image_size: 512
+  time_emb_dim: 256
+  channels: [64, 128, 256, 512]
+  attention_resolutions: [32, 16, 8]
+
+# Training Parameters
+training:
+  batch_size: 8
+  num_epochs: 100
+  learning_rate: 1e-4
+  weight_decay: 1e-6
+  gradient_clip_norm: 1.0
+  
+  # Optimizer settings
+  optimizer: "adamw"
+  adam_beta1: 0.9
+  adam_beta2: 0.999
+  
+  # Learning rate schedule
+  lr_scheduler: "cosine"
+  warmup_steps: 1000
+  min_lr_ratio: 0.1
+
+# Diffusion Parameters
+diffusion:
+  num_timesteps: 1000
+  beta_schedule: "linear"
+  beta_start: 0.0001
+  beta_end: 0.02
+  clip_sample: true
+  prediction_type: "epsilon"  # or "v_prediction"
+
+# Loss Configuration
+loss:
+  diffusion_weight: 1.0
+  perceptual_weight: 0.1
+  mathematical_weight: 0.5
+  color_harmony_weight: 0.05
+  
+  use_perceptual: true
+  use_mathematical: true
+  use_color_harmony: true
+  
+  # Diffusion loss settings
+  diffusion_loss_type: "mse"  # mse, mae, huber
+  huber_delta: 1.0
+
+# Data Configuration
+data:
+  dataset_dir: "dataset"
+  image_dir: "dataset/images"
+  metadata_file: "dataset/metadata.jsonl"
+  
+  # Image preprocessing
+  image_size: 512
+  normalize_images: true
+  augmentation:
+    horizontal_flip: true
+    rotation_degrees: 15
+    color_jitter:
+      brightness: 0.1
+      contrast: 0.1
+      saturation: 0.1
+      hue: 0.05
+
+# Formula Processing
+formula:
+  max_length: 256
+  tokenizer_type: "custom"  # or "bert"
+  special_tokens:
+    pad_token: "[PAD]"
+    unk_token: "[UNK]"
+    bos_token: "[BOS]"
+    eos_token: "[EOS]"
+
+# Validation
+validation:
+  validation_split: 0.1
+  validate_every_n_epochs: 5
+  num_validation_samples: 16
+  
+  # Metrics to track
+  metrics:
+    - "mse_loss"
+    - "perceptual_loss"
+    - "fid_score"
+    - "formula_accuracy"
+
+# Checkpointing
+checkpointing:
+  save_every_n_epochs: 10
+  keep_best_n_checkpoints: 3
+  checkpoint_dir: "checkpoints"
+  
+  # What to save
+  save_optimizer_state: true
+  save_scheduler_state: true
+  save_random_state: true
+
+# Logging and Monitoring
+logging:
+  log_dir: "logs"
+  log_every_n_steps: 100
+  
+  # Weights & Biases
+  use_wandb: true
+  wandb_project: "mathematical-art-generation"
+  wandb_entity: null
+  
+  # TensorBoard
+  use_tensorboard: true
+  
+  # What to log
+  log_gradients: false
+  log_model_parameters: false
+  log_sample_images: true
+
+# Hardware Configuration
+hardware:
+  device: "auto"  # auto, cpu, cuda, mps
+  mixed_precision: true
+  compile_model: false  # PyTorch 2.0 compilation
+  
+  # Multi-GPU settings
+  use_ddp: false
+  world_size: 1
+  
+  # Memory optimization
+  gradient_checkpointing: false
+  cpu_offload: false
+
+# Inference Configuration (for testing during training)
+inference:
+  num_inference_steps: 50
+  guidance_scale: 7.5
+  scheduler: "ddpm"  # ddpm, ddim, dpm
+  
+  # Sample generation
+  sample_every_n_epochs: 10
+  num_samples_to_generate: 4
+
+# Evaluation
+evaluation:
+  compute_fid: true
+  fid_batch_size: 50
+  fid_feature_dim: 2048
+  
+  # Test prompts for qualitative evaluation
+  test_prompts:
+    - "r = sin(3*theta)"
+    - "x = t*cos(t), y = t*sin(t)"
+    - "z = x^2 + y^2"
+    - "spiral with golden ratio"
+    - "mandelbrot fractal"
+
+# Experimental Features
+experimental:
+  use_ema: true
+  ema_decay: 0.9999
+  
+  # Formula understanding
+  pretrain_formula_encoder: false
+  freeze_formula_encoder: false
+  
+  # Advanced techniques
+  use_classifier_free_guidance: true
+  cfg_dropout_prob: 0.1
